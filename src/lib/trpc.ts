@@ -1,4 +1,6 @@
-import { createTRPCProxyClient, httpBatchLink, getFetch } from '@trpc/client';
+import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
+import type { getFetch } from '@trpc/client';
+
 import type { AppRouter } from '$server/appRouter';
 import superJSON from 'superjson';
 
