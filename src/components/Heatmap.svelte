@@ -17,8 +17,8 @@
 		try {
 			heatmapData = await trpc.heatmap.getHeatmapData.query({ dateRange });
 		} catch (error) {
-			error = error instanceof Error ? error.message : 'Something went wrong, please try again.';
-			console.error('Error fetching heatmap data:', error);
+			error = 'Something went wrong, please try again.';
+			// console.error('Error fetching heatmap data:', error);
 		} finally {
 			isLoading = false;
 		}
@@ -29,7 +29,7 @@
 	$: fetchHeatmapData(selectedDateRange);
 
 	afterUpdate(() => {
-		if (!isLoading && heatmapData.length) {
+		if (!isLoading && heatmapData?.length > 0) {
 			drawHeatmap(heatmapData);
 		}
 	});
@@ -62,7 +62,11 @@
 			</div>
 		{:else if error}
 			<div class="flex w-full h-full justify-center items-center">
-				<p class="text-sm text-gray-80000">{error}</p>
+				<p class="text-sm text-gray-8000">{error}</p>
+			</div>
+		{:else if heatmapData?.length === 0}
+			<div class="flex w-full h-full justify-center items-center">
+				<p class="text-sm text-gray-800">No data</p>
 			</div>
 		{:else}
 			<div id="heatmap" />
