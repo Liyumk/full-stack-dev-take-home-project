@@ -19,13 +19,16 @@
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/d3": "^7.4.3",
 		"@types/eslint": "^8.56.0",
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
 		"@typescript-eslint/parser": "^7.0.0",
 		"autoprefixer": "^10.4.19",
+		"d3": "^7.9.0",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
+		"flowbite-svelte-icons": "^1.6.1",
 		"postcss": "^8.4.38",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
@@ -40,9 +43,14 @@
 	"type": "module",
 	"dependencies": {
 		"@elastic/elasticsearch": "^8.13.1",
+		"@popperjs/core": "^2.11.8",
 		"@trpc/client": "^10.45.2",
 		"@trpc/server": "^10.45.2",
+		"dotenv": "^16.4.5",
+		"flowbite": "^2.4.1",
+		"flowbite-svelte": "^0.46.15",
 		"superjson": "^2.2.1",
+		"tailwind-merge": "^2.4.0",
 		"zod": "^3.23.8"
 	}
 }
