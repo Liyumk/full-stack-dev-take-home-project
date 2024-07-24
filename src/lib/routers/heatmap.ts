@@ -98,7 +98,7 @@ export const heatmapRouter = t.router({
 			];
 
 			const response = await client.search({
-				index: import.meta.env.VITE_ELASTIC_SEARCH_INDEX, 
+				index: import.meta.env.VITE_ELASTIC_SEARCH_INDEX,
 				body: {
 					query: {
 						bool: {
@@ -113,7 +113,8 @@ export const heatmapRouter = t.router({
 								},
 								{
 									terms: {
-										'geo.dest': specificCountryCodes 
+										'geo.dest': specificCountryCodes
+									}
 								}
 							]
 						}
@@ -121,19 +122,19 @@ export const heatmapRouter = t.router({
 					aggs: {
 						by_country: {
 							terms: {
-								field: 'geo.dest', 
-								size: 11 
+								field: 'geo.dest',
+								size: 11
 							},
 							aggs: {
 								hourly_agg: {
 									date_histogram: {
 										field: '@timestamp',
-										fixed_interval: '1h' 
+										fixed_interval: '1h'
 									},
 									aggs: {
 										unique_visitors: {
 											cardinality: {
-												field: 'id' 
+												field: 'id'
 											}
 										}
 									}
@@ -141,7 +142,7 @@ export const heatmapRouter = t.router({
 							}
 						}
 					},
-					size: 0 
+					size: 0
 				}
 			});
 
