@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms';
 	import Heatmap from '../components/Heatmap.svelte';
 	import Navbar from '../components/Navbar.svelte';
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Traffic Web</title>
 </svelte:head>
 
 <main class="flex flex-col justify-between items-center w-screen h-screen bg-gray-50">
