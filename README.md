@@ -1,78 +1,40 @@
-# Take-Home Project Requirement
+# Web traffic
 
-## Objective
+## Overview
 
-Enhance the provided starter project by implementing an interactive heatmap graph to display the number of unique visitors by country and hour of the day, with a selectable date range.
+This project visualizes unique visitor data by country and hour of the day. It aggregates data based on the selected time period and allows users to choose different date ranges.
 
-## Provided Resources
+## Features
 
-- **Starter Project**: Pre-configured with SvelteKit, tRPC, TypeScript, and TailwindCSS, adhering to our coding standards.
-  - Includes sample code that greets the user by name.(can be removed)
-  - ElasticSearch client setup is included.
-- **Figma Design**: [Figma Design Link](https://www.figma.com/design/ryzsNfjmzOqVFWlFEcfKgq/Untitled?node-id=0-1&t=rzAYJm61YZciE01b-1)
-The design except the Graph is just a mock up you can improve it however you want
-- **Kibana Dashboard**: [Kibana Dashboard Link](https://bilby-terminal-test.kb.us-central1.gcp.cloud.es.io:9243/app/dashboards#/view/edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b)
-  - **Credential**: [Login information](https://share.1password.com/s#E_P4JcYFTBIuH3d64rP2zrxUSCo3afQqMu5Xi6LONSE)
-  - **Graph**: Search for the heatmap graph titled "[Logs] Unique Destination Heatmap" in Kibana for reference.
+- **Interactive Heatmap**:
 
-## Task Description
+  - **Y-axis**: List of countries.
+  - **X-axis**: Hours of the day (1-24).
+  - **Cells**: Represent the number of unique visitors with colors indicating visitor counts.
+  - **Tooltips**: Display detailed information (unique visitors, hour, country) on hover.
+  - **Node Animation**: Nodes animate on hover, increasing in size and changing appearance.
+  - **Loading Indicator**: Displays a loading spinner while fetching data from the server.
 
-1. **Clone and Fork the Starter Project**:
-   - Fork the repository to your GitHub account.
-   - Clone the provided repository to your local development environment.
-   - **Running the Project**:
-     - After cloning or forking the project, navigate to the project directory.
-     - Install dependencies with `npm install` (or `pnpm install` or `yarn`).
-     - Rename `.env.example` to `.env` and add the env information from this [link](https://share.1password.com/s#_im5DiShEnUuy-6-FXuxfX_7L7_2zyvHqAM4lZBY2Is)
-     - Start a development server:
+- **Date Range Selector**:
 
-       ```bash
-       npm run dev
+  - Allows users to filter the heatmap data by:
+    - Last week
+    - Last two weeks
+    - Last month
+    - Last quarter
+    - Last year
+  - The heatmap updates dynamically based on the selected date range.
 
-       # or start the server and open the app in a new browser tab
-       npm run dev -- --open
-       ```
+- **Data Fetching and Aggregation**:
 
-2. **Implement the Heatmap Graph**:
-   - **Frontend**:
-     - Use **SvelteKit** to create the interactive heatmap UI.
-     - Style the heatmap according to the provided Figma design
-     - Utilize a suitable visualization library such as **D3.js** or any other library appropriate for creating heatmaps.
-     - The heatmap should have:
-       - **Y-axis**: List of countries.
-       - **X-axis**: Hours of the day (1-24).
-       - **Cells**: Represent the number of unique visitors, with varying colors indicating different visitor counts.
-     - (Optional) Implement interactivity features such as tooltips displaying detailed information when hovering over a cell.
-     - **Date Range Selector**:
-       - Add a select dropdown to filter data by predefined date ranges:
-         - Last week
-         - Last two weeks
-         - Last month
-         - Last quarter
-         - Last year
-       - Ensure the heatmap updates dynamically when the date range is changed.
+  - **Backend**: Uses tRPC to create API endpoints for fetching and aggregating data from ElasticSearch.
+  - **ElasticSearch Integration**: Efficiently retrieves and processes unique visitor data based on the selected date range.
 
-   - **Backend**:
-     - Use **tRPC** to create API endpoints for fetching data from ElasticSearch.
-     - Write endpoints to:
-       - Fetch and aggregate unique visitor data by country and hour.
-       - Filter data based on the selected date range.
-       - Handle the predefined date ranges to fetch appropriate data from ElasticSearch.
-     - Connect to the ElasticSearch instance using the provided Kibana credentials.
+## Cloning and running the project
 
-   - **Data Handling**:
-     - Ensure the ElasticSearch queries are efficient and optimized for aggregation.
-     - Aggregate data to count unique visitors by country and hour.
-
-## Evaluation Criteria
-
-- **Code Quality**: Clean, readable, and maintainable code following best practices.
-- **Functionality**: Correct implementation of the heatmap and date range selector as per the provided Figma design.
-- **Interactivity**: Smooth and intuitive user interactions.
-- **Efficiency**: Optimal data fetching and processing from ElasticSearch.
-- **Documentation**: Clear and detailed documentation and README updates.
-
-#### Submission
-
-- **Submission form**: [Form Link](https://forms.gle/E13oWiJk6nB3HTnz5)
-- **Repository**: Submit the link to your forked repository in the above google form
+```bash
+git clone git@github.com:Liyumk/full-stack-dev-take-home-project.git
+cd full-stack-dev-take-home-project
+npm i
+npm run dev
+```
