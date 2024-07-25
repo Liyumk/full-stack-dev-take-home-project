@@ -18,7 +18,7 @@
 			heatmapData = await trpc.heatmap.getHeatmapData.query({ dateRange });
 		} catch (error) {
 			error = 'Something went wrong, please try again.';
-			// console.error('Error fetching heatmap data:', error);
+			console.error('Error fetching heatmap data:', error);
 		} finally {
 			isLoading = false;
 		}

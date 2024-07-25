@@ -7,7 +7,9 @@
 	<title>Traffic Web</title>
 </svelte:head>
 
-<main class="flex flex-col justify-between items-center w-screen h-screen bg-gray-50">
+<main
+	class="flex flex-col justify-between items-center w-screen h-screen bg-gray-50 overflow-x-hidden"
+>
 	<div class="w-full flex flex-col items-center">
 		<Navbar />
 		<div class="flex">
