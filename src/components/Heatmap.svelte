@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount, afterUpdate } from 'svelte';
 	import DropDown from './DropDown.svelte';
-	import * as d3 from 'd3';
 	import { trpc } from '$lib/trpcClient';
 	import { DATE_RANGE, type HeatmapResponse } from '../types/heatmap.type';
 	import { Wave } from 'svelte-loading-spinners';

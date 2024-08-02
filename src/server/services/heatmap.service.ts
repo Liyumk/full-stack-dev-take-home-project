@@ -34,56 +34,54 @@ export class HeatmapService {
 
 		const response = await this.client.search({
 			index: import.meta.env.VITE_ELASTIC_SEARCH_INDEX,
-			body: {
-				query: {
-					bool: {
-						must: [
-							{
-								range: {
-									'@timestamp': {
-										gte: startDate,
-										lte: new Date().toISOString(),
-										format: 'strict_date_optional_time'
-									}
+			query: {
+				bool: {
+					must: [
+						{
+							range: {
+								'@timestamp': {
+									gte: startDate,
+									lte: new Date().toISOString(),
+									format: 'strict_date_optional_time'
 								}
-							},
-							{ terms: { 'geo.dest': specificCountryCodes } }
-						],
-						filter: [],
-						should: [],
-						must_not: []
-					}
-				},
-				aggs: {
-					countries: {
-						terms: {
-							field: 'geo.dest'
-							// size: 1
+							}
 						},
-						aggs: {
-							hours: {
-								histogram: {
-									field: 'hour_of_day',
-									interval: 1
-								},
-								aggs: {
-									unique: {
-										cardinality: {
-											field: 'clientip'
-										}
+						{ terms: { 'geo.dest': specificCountryCodes } }
+					],
+					filter: [],
+					should: [],
+					must_not: []
+				}
+			},
+			aggs: {
+				countries: {
+					terms: {
+						field: 'geo.dest'
+						// size: 1
+					},
+					aggs: {
+						hours: {
+							histogram: {
+								field: 'hour_of_day',
+								interval: 1
+							},
+							aggs: {
+								unique: {
+									cardinality: {
+										field: 'clientip'
 									}
 								}
 							}
 						}
 					}
-				},
-				size: 0,
-				runtime_mappings: {
-					hour_of_day: {
-						type: 'long',
-						script: {
-							source: "emit(doc['@timestamp'].value.getHour());"
-						}
+				}
+			},
+			size: 0,
+			runtime_mappings: {
+				hour_of_day: {
+					type: 'long',
+					script: {
+						source: "emit(doc['@timestamp'].value.getHour());"
 					}
 				}
 			}
