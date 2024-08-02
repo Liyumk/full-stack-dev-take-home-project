@@ -5,7 +5,3 @@ export const heatmapParamsSchema = z.object({
 });
 
 export type HeatmapParams = z.infer<typeof heatmapParamsSchema>;
-
-export const DateRangeSchema = z.object({
-	dateRange: z.enum(['last_week', 'last_two_weeks', 'last_month', 'last_quarter', 'last_year'])
-});
